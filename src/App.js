@@ -13,7 +13,6 @@ function App() {
               <ItemList />
               <SelectedItems />
           </div>
-
       </div>
     </RecoilRoot>
 
