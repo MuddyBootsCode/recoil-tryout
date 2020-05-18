@@ -8,7 +8,7 @@ function App() {
 
   return (
     <RecoilRoot>
-      <div className="App" className="flex justify-center">
+      <div className="App flex justify-center">
           <div>
               <ItemList />
               <SelectedItems />
