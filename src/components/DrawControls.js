@@ -1,11 +1,14 @@
 import React from 'react';
-import ShapeButton from "./ShapeButton";
+import AddShapes from "./AddShapes";
 
 const DrawControls = () => {
     return (
         <div className="flex flex-col">
-            <ShapeButton text={"Add Circle"}/>
-            <ShapeButton text={"Add Square"}/>
+          <div>
+            <AddShapes />
+          </div>
+          <div>
+          </div>
         </div>
     );
 };

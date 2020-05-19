@@ -5,8 +5,9 @@ export const itemWithID = id => {
         atom({
             key: `item${id}`,
             default: {
-                id,
+                id
             }
+
         })
     )
 }
@@ -29,9 +30,7 @@ export const itemList = atom({
     default: []
 })
 
-export const svgCanvas = atom({
-    key: 'svgCanvas',
-    default: {
-
-    }
+export const squareList = atom({
+    key: 'squares',
+    default: []
 })
