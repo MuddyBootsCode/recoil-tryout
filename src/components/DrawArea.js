@@ -24,17 +24,24 @@ const useResizeObserver = ref => {
 }
 
 const DrawArea = () => {
-    const initialData = [
-        {cord:20, color: "green"},
-        {cord:25, color: "red"},
-        {cord:30, color: "blue"},
-        {cord:45, color: "pink"},
-        {cord:60, color: "cyan"}];
-    const [data, setData] = useState(initialData);
     const wrapperRef = useRef();
     const svgRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
-    console.log(dimensions)
+    const tryWidth = dimensions.width /2;
+    const tryHeight = dimensions.height /2;
+    const initialData = [
+        {x:10, y:10, r:10, color: "green"},
+        {x:30, y:30, r:15, color: "red"},
+        {x:55, y:55, r:15, color: "blue"},
+        {x:100, y:100, r:15, color: "teal"},
+        {x:200, y:200, r:15, color: "grey"},
+        {x:300, y:300, r:15, color: "pink"},
+        {x:300, y:600, r:15, color: "purple"},
+        {x:300, y:800, r:15, color: "black"},
+        {x:320, y:1000, r:15, color: "salmon"},
+        {x:320, y:500, r:15, color: "orange"},
+        ];
+    const [data, setData] = useState(initialData);
 
     useEffect(() => {
         const svg = select(svgRef.current);
@@ -59,18 +66,17 @@ const DrawArea = () => {
             <div className="border border-black border-2 rounded" ref={wrapperRef}>
                 <svg
                     ref={svgRef}
-                    height={dimensions.height}
-                    width={dimensions.width}
-                    viewBox="0 0 100 100"
+                    viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
                     preserveAspectRatio="xMidYMid meet"
+                    height={dimensions.height}
                 >
                     {
                         data.map((c) => {
                             return(
                                 <Circle
-                                    cx={c.cord * 3}
-                                    cy={c.cord * 2}
-                                    r={3 + c.cord}
+                                    cx={c.x}
+                                    cy={c.y}
+                                    r={c.r}
                                     fill={c.color}
                                 />
                             )
