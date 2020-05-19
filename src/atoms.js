@@ -28,3 +28,10 @@ export const itemList = atom({
     key: 'itemList',
     default: []
 })
+
+export const svgCanvas = atom({
+    key: 'svgCanvas',
+    default: {
+
+    }
+})

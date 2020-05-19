@@ -1,13 +1,13 @@
 import React from 'react';
 import { itemWithID } from "../atoms";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 const Item = ({ id }) => {
 
-    const [itemState, setItemState] = useRecoilState(itemWithID(id))
+    const setItemState = useSetRecoilState(itemWithID(id))
 
     const setSelected = () => {
-        setItemState({...itemState, selected: !itemState.selected})
+        setItemState((oldItemState) =>({...oldItemState, selected: !oldItemState.selected}))
     }
 
     return (
