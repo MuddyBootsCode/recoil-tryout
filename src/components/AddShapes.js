@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import { useSetRecoilState } from "recoil";
-import {itemWithID, squareList} from "../atoms";
+import { squareList } from "../atoms";
 import shortid from 'shortid'
 
 const AddShapes = () => {
-  const newSquare = itemWithID(shortid.generate())
-  const setItemState = useSetRecoilState(newSquare)
   const setSquareState = useSetRecoilState(squareList)
   const defaultFormState = {
+    id: shortid.generate(),
     x: "",
     y: "",
     size: "",
@@ -18,8 +17,6 @@ const AddShapes = () => {
 
   const isValid = x !== "" && y == "" && size !== ""
 
-  console.log(isValid)
-
   const handleChange = e => {
     e.preventDefault();
     const name = e.target.name
@@ -27,9 +24,16 @@ const AddShapes = () => {
     setFormState({...formState, [name]: value})
   }
 
+  const addItem = () => {
+    setSquareState((oldTodoList) => [
+      ...oldTodoList,
+      formState
+    ]);
+  };
+
   const submitSquare = () => {
-    setItemState((...oldState) => ({...oldState, formState}))
-    setSquareState((...oldState) => ([...oldState, newSquare]))
+    addItem()
+    setFormState(defaultFormState)
   }
 
   return (
@@ -40,7 +44,7 @@ const AddShapes = () => {
         type="number"
         value={x}
         name="x"
-        placeholder="x value"
+        placeholder=" x value"
         onChange={handleChange}
         className="border border-black border-2 rounded m-0 shadow-lg"
       />
@@ -49,7 +53,7 @@ const AddShapes = () => {
         type="number"
         value={y}
         name="y"
-        placeholder="y value"
+        placeholder=" y value"
         onChange={handleChange}
         className="border border-black border-2 rounded m-0 shadow-lg"
       />
@@ -58,7 +62,7 @@ const AddShapes = () => {
         type="number"
         value={size}
         name="size"
-        placeholder="height & width"
+        placeholder=" height & width"
         onChange={handleChange}
         className="border border-black border-2 rounded m-0 shadow-lg"
       />
@@ -69,7 +73,8 @@ const AddShapes = () => {
              onChange={handleChange}
       />
       <button
-        disabled={!isValid}
+        onClick={submitSquare}
+        disabled={isValid}
         className="border
                    border-black border-2 bg-white rounded
                    w-full my-2 hover:bg-black hover:text-white shadow-lg"
