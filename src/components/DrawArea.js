@@ -1,12 +1,18 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import DrawControls from "./DrawControls";
 import Circle from "./Circle";
-import {squareList} from "../atoms";
+import { squareList, circleList } from "../atoms";
 import {useRecoilValue} from "recoil";
 import Square from "./Square";
+import CircleCard from "./CircleCard";
 
 const DrawArea = () => {
     const squares = useRecoilValue(squareList);
+    const circles = useRecoilValue(circleList);
+
+    const shapes = [...squares, ...circles];
+
+    console.log(shapes)
 
     return (
         <div style={{
@@ -25,19 +31,38 @@ const DrawArea = () => {
                     preserveAspectRatio="xMidYMid meet"
                 >
                     {
-                        squares.map((c) => {
-                            console.log(c, ' Inside draw area')
+                        shapes.map((c) => {
+                          console.log(c)
+                          if (c.shape === "square"){
                             return(
-                                <Square
-                                    props={c}
-                                    key={c.id}
-                                />
+                              <Square
+                                props={c}
+                                key={c.id}
+                              />
                             )
+                          }
+                          else {
+                            return(
+                              <Circle
+                                props={c}
+                                key={c.id}
+                              />
+                            )
+                          }
                         })
                     }
                 </svg>
             </div>
-            <div className="border border-black border-2 rounded bg-gray-400 shadow mx-2">3</div>
+            <div className="border border-black border-2 rounded bg-gray-400 shadow mx-2">
+              {
+                circles.map((c) => {
+                  return (
+                    <CircleCard props={c} key={c.id}/>
+                    )
+
+                })
+              }
+            </div>
         </div>
     );
 };

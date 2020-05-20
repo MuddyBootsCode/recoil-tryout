@@ -1,21 +1,25 @@
 import React, {useState} from 'react';
 import { useSetRecoilState } from "recoil";
-import { squareList } from "../atoms";
+import {circleList, squareList} from "../atoms";
 import shortid from 'shortid'
 
 const AddShapes = () => {
   const setSquareState = useSetRecoilState(squareList)
+  const setCircleState = useSetRecoilState(circleList)
   const defaultFormState = {
     id: shortid.generate(),
     x: "",
+    cx: "",
     y: "",
+    cy: "",
     size: "",
-    fill: "#3942e0"
+    diameter: "",
+    squarefill: "#3942e0",
+    circleFill: "#3942e0",
+    shape: ''
   }
   const [formState, setFormState] = useState(defaultFormState);
-  const {x, y, size, fill } = formState;
-
-  const isValid = x !== "" && y == "" && size !== ""
+  const {x, y, size, squarefill, cx, cy, diameter, circleFill } = formState;
 
   const handleChange = e => {
     e.preventDefault();
@@ -24,15 +28,27 @@ const AddShapes = () => {
     setFormState({...formState, [name]: value})
   }
 
-  const addItem = () => {
-    setSquareState((oldTodoList) => [
+  const addSquare = () => {
+    setSquareState((oldSquareList) => [
+      ...oldSquareList,
+      {...formState, shape: 'square'}
+    ]);
+  };
+
+  const addCircle = () => {
+    setCircleState((oldTodoList) => [
       ...oldTodoList,
-      formState
+      {...formState, shape: 'circle'}
     ]);
   };
 
   const submitSquare = () => {
-    addItem()
+    addSquare()
+    setFormState(defaultFormState)
+  }
+
+  const submitCircle = () => {
+    addCircle()
     setFormState(defaultFormState)
   }
 
@@ -68,19 +84,65 @@ const AddShapes = () => {
       />
       <span>Color: </span>
       <input type="color"
-             value={fill}
-             name="fill"
+             value={squarefill}
+             name="squarefill"
              onChange={handleChange}
       />
       <button
         onClick={submitSquare}
-        disabled={isValid}
         className="border
                    border-black border-2 bg-white rounded
                    w-full my-2 hover:bg-black hover:text-white shadow-lg"
       >
         Add Square
       </button>
+      <br/>
+      <hr/>
+      <br/>
+      <h2>Circle</h2>
+      <span>X: </span>
+      <input
+        type="number"
+        value={cx}
+        name="cx"
+        placeholder=" x value"
+        onChange={handleChange}
+        className="border border-black border-2 rounded m-0 shadow-lg"
+      />
+      <span>Y: </span>
+      <input
+        type="number"
+        value={cy}
+        name="cy"
+        placeholder=" y value"
+        onChange={handleChange}
+        className="border border-black border-2 rounded m-0 shadow-lg"
+      />
+      <span>Radius: </span>
+      <input
+        type="number"
+        value={diameter}
+        name="diameter"
+        placeholder=" diameter"
+        onChange={handleChange}
+        className="border border-black border-2 rounded m-0 shadow-lg"
+      />
+      <span>Color: </span>
+      <input type="color"
+             value={circleFill}
+             name="circleFill"
+             onChange={handleChange}
+      />
+      <button
+        onClick={submitCircle}
+        className="border
+                   border-black border-2 bg-white rounded
+                   w-full my-2 hover:bg-black hover:text-white shadow-lg"
+      >
+        Add Circle
+      </button>
+      <br/>
+      <hr/>
     </div>
   );
 };

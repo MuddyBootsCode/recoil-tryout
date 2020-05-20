@@ -1,10 +1,9 @@
 import React from 'react';
-import {useSetRecoilState} from "recoil";
-import {itemWithID} from "../atoms";
+import { useSetRecoilState } from "recoil";
+import { itemWithID } from "../atoms";
 
 const Square = ({props}) => {
-  const { id, x, y, size, fill } = props;
-  console.log(id, x, y, size, fill)
+  const { id, x, y, size, squarefill } = props;
   const setItemState = useSetRecoilState(itemWithID(id))
 
   return (
@@ -14,7 +13,7 @@ const Square = ({props}) => {
       y={y}
       height={size}
       width={size}
-      fill={fill}
+      fill={squarefill}
     />
   );
 };

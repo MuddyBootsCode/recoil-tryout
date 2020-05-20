@@ -28,9 +28,14 @@ export const selectedItems = selector({
 export const itemList = atom({
     key: 'itemList',
     default: []
-})
+});
 
 export const squareList = atom({
     key: 'squares',
     default: []
-})
+});
+
+export const circleList = atom({
+    key: 'circles',
+    default: []
+});
