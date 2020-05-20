@@ -16,7 +16,7 @@ const CircleCard = ({props}) => {
         e.preventDefault();
         const name = e.target.name
         const value = e.target.value
-        setCircleState({...props, [name]: value})
+        setCircleState({...circleState, [name]: value})
     }
 
 
