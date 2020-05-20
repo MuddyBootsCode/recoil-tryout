@@ -27,6 +27,7 @@ const DrawArea = () => {
             <div className="border border-black border-2 rounded">
                 <svg
                     viewBox={'0 0 640 640'}
+                    className="border border-black border-2 rounded"
                 >
                     {
                         shapes.map((c) => {
