@@ -27,7 +27,7 @@ const CircleCard = ({props}) => {
 
   return (
     <div className="border border-black border-2 rounded m-2 bg-white font-mono p-2 flex flex-col">
-      <h2>Circle {id}</h2>
+      <h2><b>Circle - {id}</b></h2>
         <span>X: </span>
         <input
             type="number"

@@ -61,7 +61,7 @@ const DrawArea = () => {
                     }
                 </svg>
             </div>
-            <div className="border border-black border-2 rounded bg-gray-400 shadow mx-2">
+            <div className="flex flex-col border border-black border-2 rounded bg-gray-400 shadow mx-2">
               {
                 shapes.map((c) => {
                     if( c.shape === "circle"){

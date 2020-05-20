@@ -16,10 +16,10 @@ export const circleWithID = (id) => {
             key: `item${id}`,
             default: {
                 id,
-                cx: 50,
-                cy: 50,
+                cx: 80,
+                cy: 80,
                 r: 15,
-                fill: "#3942e0",
+                fill: "#e0399d",
                 offset: {
 
                 }
