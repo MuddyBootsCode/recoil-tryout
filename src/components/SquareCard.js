@@ -1,11 +1,12 @@
 import React from 'react';
-import { squareWithID } from "../atoms";
-import { useRecoilState } from "recoil";
+import {squareList, squareWithID} from "../atoms";
+import {useRecoilState, useSetRecoilState} from "recoil";
 
 const SquareCard = ({props}) => {
 
     const [squareState, setSquareState] = useRecoilState(squareWithID(props.key));
 
+    const setSquares = useSetRecoilState(squareList);
 
     const { x, y, width, fill, id } = squareState;
 
@@ -14,6 +15,14 @@ const SquareCard = ({props}) => {
         const name = e.target.name
         const value = e.target.value
         setSquareState({...squareState, [name]: value})
+    }
+
+    const deleteSquare = () => {
+        setSquares((oldSquares) => {
+            const newList = oldSquares.filter(c => c.key !== props.key)
+            return newList;
+        })
+
     }
 
 
@@ -53,6 +62,14 @@ const SquareCard = ({props}) => {
                    name="fill"
                    onChange={handleChange}
             />
+            <button
+                className="border
+                   border-black border-2 bg-white rounded
+                   w-full my-2 hover:bg-black hover:text-white shadow-lg"
+                onClick={deleteSquare}
+            >
+                Delete Square
+            </button>
         </div>
     );
 };

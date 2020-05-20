@@ -1,10 +1,11 @@
 import React from 'react';
-import { circleWithID } from "../atoms";
-import { useRecoilState } from "recoil";
+import {circleList, circleWithID} from "../atoms";
+import {useRecoilState, useSetRecoilState} from "recoil";
 
 const CircleCard = ({props}) => {
 
     const [circleState, setCircleState] = useRecoilState(circleWithID(props.key));
+    const setCircles = useSetRecoilState(circleList)
 
 
     const { cx, cy, r, fill, id } = circleState;
@@ -14,6 +15,14 @@ const CircleCard = ({props}) => {
         const name = e.target.name
         const value = e.target.value
         setCircleState({...circleState, [name]: value})
+    }
+
+    const deleteCircle = () => {
+        setCircles((oldCircles) => {
+            const newList = oldCircles.filter(c => c.key !== props.key)
+            return newList;
+        })
+
     }
 
 
@@ -53,6 +62,14 @@ const CircleCard = ({props}) => {
                name="fill"
                onChange={handleChange}
         />
+        <button
+            className="border
+                   border-black border-2 bg-white rounded
+                   w-full my-2 hover:bg-black hover:text-white shadow-lg"
+            onClick={deleteCircle}
+        >
+            Delete Circle
+        </button>
     </div>
   );
 };
