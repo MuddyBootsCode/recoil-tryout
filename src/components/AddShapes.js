@@ -23,7 +23,6 @@ const AddShapes = () => {
 
   return (
     <div className="flex flex-col m-2 justify-center font-mono">
-      <h2>Square</h2>
       <button
         onClick={addSquare}
         className="border
