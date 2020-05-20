@@ -1,6 +1,6 @@
 import React from 'react';
-import {circleList, circleWithID, getCircle, itemWithID} from "../atoms";
-import {selector, useRecoilState, useSetRecoilState} from "recoil";
+import { circleWithID } from "../atoms";
+import { useRecoilState } from "recoil";
 
 const CircleCard = ({props}) => {
 
@@ -12,7 +12,6 @@ const CircleCard = ({props}) => {
     const { cx, cy, r, fill, id } = circleState;
 
     const handleChange = e => {
-        console.log(e.target.name, e.target.value)
         e.preventDefault();
         const name = e.target.name
         const value = e.target.value

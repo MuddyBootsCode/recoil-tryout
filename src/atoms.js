@@ -26,6 +26,23 @@ export const circleWithID = (id) => {
     )
 }
 
+export const squareWithID = (id) => {
+    return (
+        atom({
+            key: `item${id}`,
+            default: {
+                id,
+                x: 50,
+                y: 50,
+                height: 15,
+                width: 15,
+                fill: "#3942e0"
+            }
+
+        })
+    )
+}
+
 export const getItem = (id) => selector({
     key: 'getItem',
     get: ({get}) => get(itemWithID(id))
