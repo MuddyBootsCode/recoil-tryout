@@ -14,7 +14,6 @@ const Circle = ({ props }) => {
         const bbox = e.target.getBoundingClientRect();
         const x = e.clientX - bbox.left;
         const y = e.clientY - bbox.top;
-        console.log(bbox, x, y)
         el.setPointerCapture(e.pointerId);
         setCircleState({
             ...circleState,
@@ -43,8 +42,6 @@ const Circle = ({ props }) => {
             active: false
         });
     };
-
-    console.log(circleState)
 
     return (
             <circle

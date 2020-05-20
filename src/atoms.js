@@ -19,7 +19,10 @@ export const circleWithID = (id) => {
                 cx: 50,
                 cy: 50,
                 r: 15,
-                fill: "#3942e0"
+                fill: "#3942e0",
+                offset: {
+
+                }
             }
 
         })
@@ -36,7 +39,10 @@ export const squareWithID = (id) => {
                 y: 50,
                 height: 15,
                 width: 15,
-                fill: "#3942e0"
+                fill: "#3942e0",
+                offset: {
+
+                }
             }
 
         })

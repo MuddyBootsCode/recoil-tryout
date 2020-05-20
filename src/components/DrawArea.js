@@ -26,8 +26,7 @@ const DrawArea = () => {
             </div>
             <div className="border border-black border-2 rounded">
                 <svg
-                    viewBox={'0 0 200 200'}
-                    preserveAspectRatio="xMidYMid meet"
+                    viewBox={'0 0 640 640'}
                 >
                     {
                         shapes.map((c) => {

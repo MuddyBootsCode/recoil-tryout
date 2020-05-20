@@ -1,15 +1,47 @@
 import React from 'react';
-import { useRecoilState, useRecoilValue } from "recoil";
-import {itemWithID, squareWithID} from "../atoms";
+import { useRecoilState } from "recoil";
+import { squareWithID } from "../atoms";
 
 const Square = ({props}) => {
+  
+  const [squareState, setSquareState] = useRecoilState(squareWithID(props.key))
 
-  const square = useRecoilValue(squareWithID(props.key))
-  console.log(square, ' square')
+  const { x, y, width, fill, id } = squareState;
 
-  const { x, y, width, fill, id } = square;
+  const handlePointerDown = e => {
+    const el = e.target;
+    const bbox = e.target.getBoundingClientRect();
+    const x = e.clientX - bbox.left;
+    const y = e.clientY - bbox.top;
+    el.setPointerCapture(e.pointerId);
+    setSquareState({
+      ...squareState,
+      active: true,
+      offset: {
+        x,
+        y
+      }
+    });
+  };
+  const handlePointerMove = e => {
+    const bbox = e.target.getBoundingClientRect();
+    const x = e.clientX - bbox.left;
+    const y = e.clientY - bbox.top;
+    if (squareState.active) {
+      setSquareState({
+        ...squareState,
+        x: squareState.x - (squareState.offset.x - x),
+        y: squareState.y - (squareState.offset.y - y)
+      });
+    }
+  };
+  const handlePointerUp = e => {
+    setSquareState({
+      ...squareState,
+      active: false
+    });
+  };
 
-  // const setItemState = useRecoilState(itemWithID(id))
 
   return (
     <rect
@@ -19,6 +51,9 @@ const Square = ({props}) => {
       height={width}
       width={width}
       fill={fill}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerMove={handlePointerMove}
     />
   );
 };

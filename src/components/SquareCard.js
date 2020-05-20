@@ -19,7 +19,7 @@ const SquareCard = ({props}) => {
 
     return (
         <div className="border border-black border-2 rounded m-2 bg-white font-mono p-2 flex flex-col">
-            <h2>Circle {id}</h2>
+            <h2>Square {id}</h2>
             <span>X: </span>
             <input
                 type="number"
