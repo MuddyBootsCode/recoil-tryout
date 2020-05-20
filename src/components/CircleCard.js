@@ -22,7 +22,6 @@ const CircleCard = ({props}) => {
             const newList = oldCircles.filter(c => c.key !== props.key)
             return newList;
         })
-
     }
 
 
