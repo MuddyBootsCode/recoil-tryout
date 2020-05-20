@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useSetRecoilState } from "recoil";
-import {circleList, circleWithID, itemWithID, squareList, squareWithID} from "../atoms";
+import {circleList, circleWithID, squareList, squareWithID} from "../atoms";
 import shortid from 'shortid'
 
 const AddShapes = () => {

@@ -9,7 +9,7 @@ const Square = ({props}) => {
 
   const { x, y, width, fill, id } = square;
 
-  const setItemState = useRecoilState(itemWithID(id))
+  // const setItemState = useRecoilState(itemWithID(id))
 
   return (
     <rect

@@ -4,8 +4,6 @@ import { useRecoilState } from "recoil";
 
 const CircleCard = ({props}) => {
 
-    console.log(props, ' Circle card')
-
     const [circleState, setCircleState] = useRecoilState(circleWithID(props.key));
 
 
