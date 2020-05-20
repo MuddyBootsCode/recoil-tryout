@@ -1,20 +1,24 @@
 import React from 'react';
-import {useSetRecoilState} from "recoil";
-import {itemWithID} from "../atoms";
+import {useRecoilState, useSetRecoilState} from "recoil";
+import {circleList, circleWithID, itemWithID} from "../atoms";
 
 
 const Circle = ({ props }) => {
 
-    const { cx, cy, diameter, circleFill, id } = props;
+    const [circle, setCircle] = useRecoilState(circleWithID(props.key))
+    // const setCircle = useSetRecoilState(circleList)
+    console.log(circle)
 
-    const setItemState = useSetRecoilState(itemWithID(id))
+    const { cx, cy, r, fill, id } = circle;
+
+    const setItemState = useRecoilState(itemWithID(id))
 
     return (
             <circle
                 cx={cx}
                 cy={cy}
-                r={diameter}
-                fill={circleFill}
+                r={r}
+                fill={fill}
                 id={id}
             />
     )

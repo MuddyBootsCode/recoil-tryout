@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import { useSetRecoilState } from "recoil";
-import {circleList, squareList} from "../atoms";
+import {circleList, circleWithID, itemWithID, squareList} from "../atoms";
 import shortid from 'shortid'
 
 const AddShapes = () => {
   const setSquareState = useSetRecoilState(squareList)
   const setCircleState = useSetRecoilState(circleList)
   const defaultFormState = {
-    id: shortid.generate(),
     x: "",
     cx: "",
     y: "",
@@ -36,9 +35,10 @@ const AddShapes = () => {
   };
 
   const addCircle = () => {
-    setCircleState((oldTodoList) => [
-      ...oldTodoList,
-      {...formState, shape: 'circle'}
+      const newID = shortid.generate();
+    setCircleState((oldCircleList) => [
+      ...oldCircleList,
+      circleWithID(newID)
     ]);
   };
 
@@ -99,40 +99,6 @@ const AddShapes = () => {
       <br/>
       <hr/>
       <br/>
-      <h2>Circle</h2>
-      <span>X: </span>
-      <input
-        type="number"
-        value={cx}
-        name="cx"
-        placeholder=" x value"
-        onChange={handleChange}
-        className="border border-black border-2 rounded m-0 shadow-lg"
-      />
-      <span>Y: </span>
-      <input
-        type="number"
-        value={cy}
-        name="cy"
-        placeholder=" y value"
-        onChange={handleChange}
-        className="border border-black border-2 rounded m-0 shadow-lg"
-      />
-      <span>Radius: </span>
-      <input
-        type="number"
-        value={diameter}
-        name="diameter"
-        placeholder=" diameter"
-        onChange={handleChange}
-        className="border border-black border-2 rounded m-0 shadow-lg"
-      />
-      <span>Color: </span>
-      <input type="color"
-             value={circleFill}
-             name="circleFill"
-             onChange={handleChange}
-      />
       <button
         onClick={submitCircle}
         className="border

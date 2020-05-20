@@ -1,11 +1,25 @@
 import {atom, selector} from 'recoil';
 
+
 export const itemWithID = id => {
+    return(
+        atom({
+            key: `item${id}`,
+            default: {}
+        })
+    )
+}
+
+export const circleWithID = (id) => {
     return (
         atom({
             key: `item${id}`,
             default: {
-                id
+                id,
+                cx: 50,
+                cy: 50,
+                r: 15,
+                fill: "#3942e0"
             }
 
         })
