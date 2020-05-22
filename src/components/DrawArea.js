@@ -22,16 +22,15 @@ const DrawArea = () => {
             height: '100vh'
         }}>
             <div className="flex flex-col border border-black border-2 rounded bg-gray-400 shadow mx-2 font-mono text-center">
-                <DrawControls />
-                <br/>
-                <span> Recoil State managment tryout</span>
-                <span> Shapes with D3.js </span>
-                <span>
-                  <u>
-                    <a href="https://github.com/MuddyBootsCode/recoil-tryout"> Git Repo here</a>
-                  </u>
-                </span>
-
+              <DrawControls />
+              <br/>
+              <span> Recoil State managment tryout</span>
+              <span> Shapes with D3.js </span>
+              <span>
+                <u>
+                  <a href="https://github.com/MuddyBootsCode/recoil-tryout"> Git Repo here</a>
+                </u>
+              </span>
             </div>
             <div className="border border-black border-2 rounded bg-blue-300">
               <div className="font-mono text-center">Draw Area</div>

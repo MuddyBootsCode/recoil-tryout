@@ -6,7 +6,7 @@ const Square = ({props}) => {
   
   const [squareState, setSquareState] = useRecoilState(squareWithID(props.key))
 
-  const { x, y, width, fill, id } = squareState;
+  const { x, y, width, fill, active, id } = squareState;
 
   const handlePointerDown = e => {
     const el = e.target;
@@ -50,7 +50,7 @@ const Square = ({props}) => {
       y={y}
       height={width}
       width={width}
-      fill={fill}
+      fill={active ? "blue" : fill}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerMove={handlePointerMove}
